@@ -52,6 +52,7 @@ for n in range(9):
 fernet = Fernet("RAXdcIQ5BYg-CM5pWGMc_s0SZsYFHXkiSXi4w-V8nTU=") #random key
 with open("solutions.cry","rb") as enc_file:
 	encrypted = enc_file.read()
+	enc_file.close()
 solutions = eval(fernet.decrypt(encrypted)) #get solutions from encrypted file
 
 if not os.path.isfile("highscore.cry"):
@@ -59,6 +60,7 @@ if not os.path.isfile("highscore.cry"):
 else:
 	with open("highscore.cry","rb") as enc_file:
 		encrypted = enc_file.read()
+		enc_file.close()
 	highscores = eval(fernet.decrypt(encrypted)) #get highscores from encrypted file
 
 menu_def = [["&Settings", ["&Image",["&squares ✓::squares","&keypad::numbers","&tower bridge::tower","&custom…::custom"],"&High scores","E&xit"]], ["&Help", ["&Instructions","&Background","Hi&nts","&About"]]]
@@ -140,6 +142,7 @@ def getHSname():
 			encrypted = fernet.encrypt(str.encode(repr(highscores)))
 			with open('highscore.cry', 'wb') as encrypted_file:
 				encrypted_file.write(encrypted)
+				encrypted_file.close()
 			break
 	win_win.close()
 
@@ -235,8 +238,8 @@ while True:
 					windows_input["ckey2"].update("[[1, 6, 8], [2, 7, 9, 5, 4, 3]]")
 
 				if event2 == "AGL2": 
-					windows_input["ckey1"].update("[[1, 2, 3], [4, 5, 6], [7, 8, 9]]")
-					windows_input["ckey2"].update("[[1, 5, 2, 6, 4, 7], [3, 8, 9]]")
+					windows_input["ckey1"].update("[[4, 5, 6], [7, 8, 9]]")
+					windows_input["ckey2"].update("[[1, 4, 7], [2, 9, 8, 5, 6, 3]]")
 
 				if event2 == "SL": 
 					windows_input["ckey1"].update("[[1, 2, 3], [4, 5, 6], [7, 8, 9]]")
